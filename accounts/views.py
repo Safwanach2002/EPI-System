@@ -114,4 +114,10 @@ def contact(request):
 
 def privacy(request):
     return render(request,'privacy.html')
+    
+def refar(request):
+    return render(request,'refar.html')
+    
+
+    
 

@@ -265,6 +265,17 @@
             margin-right: 10px;
         }
 
+        .terms-link {
+            color: #007bff; /* Blue color */
+            text-decoration: none; /* Remove underline */
+            font-size: 12px; /* Set font size */
+        }
+
+        .terms-link:hover {
+            text-decoration: underline; /* Add underline on hover */
+            color: #0056b3; /* Darker blue on hover */
+        }
+
         .btn {
             background-color: #007bff;
             color: white;
@@ -401,6 +412,10 @@
                 <div class="form-check">
                     {{ form.accept_terms }}
                     {{ form.accept_terms.label_tag }}
+                </div>
+
+                <div>
+                    <a href="{% url 'terms' %}" target="_blank" class="terms-link">(Read our Terms and Conditions)</a>
                 </div>
                 
                 <button type="submit" class="btn">Sign Up</button>

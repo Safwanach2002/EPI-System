@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Info Page</title>
+    <title>EPI-Home</title>
 
     <!--CDNS-->
 <meta charset="utf-8">
@@ -98,8 +98,6 @@
             padding:0;
             display:flex;
             justify-content:center;
-            
-            
         }
 
         li:hover{
@@ -111,9 +109,6 @@
         .nav-bar li{
             margin-right:20px;
         }
-        
-
-        
         
         /*project card*/
 
@@ -248,14 +243,7 @@
         .buy-btn:hover {
             background-color: #cc7a00; /* Darker yellow on hover */
         }
-        
-
-
-
-
-
-
-
+    
         .project-card p {
             margin: 0;
             color: #ffffff;
@@ -346,9 +334,6 @@
             color: #333;
         }
 
-
-
-
         footer {
             background-color: #333; 
             color: #fff;
@@ -391,11 +376,7 @@
             color: #f4f4f4;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size: xx-large;
-        }
-        
-        
-        
-            
+        } 
         
     </style>
 </head>
@@ -412,7 +393,7 @@
         </ul>
         <ul class="nav-bar ul mx-auto">
             <li class="active"><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="#">References</a></li>
+            <li><a href="{% url 'refar' %}">References</a></li>
             <li><a href="">Services</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
         </ul>

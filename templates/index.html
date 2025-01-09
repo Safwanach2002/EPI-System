@@ -376,7 +376,7 @@
         </ul>
 
         <ul class="navbar-left" style="font-family:cursive;font-size:x-large;">
-            <li a href="#">Easy Purchase Investment </li>
+            <li a href="{% url 'index' %}">Easy Purchase Investment </li>
         </ul>
         <ul class="nav-bar ul mx-auto">
             <li class="active"><a href="{% url 'index' %}">Home</a></li>
@@ -468,7 +468,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ i.title }}</h5>
                     <p class="card-description">{{ i.desc }}</p>
-                    <a href="{% url 'product_scheme_manage'%}"class="buy-btn">
+                    <a href="{% url 'product_scheme_manage' %}"class="buy-btn">
                         <button class="buy-btn">VIEW MORE</button>
                     </a>
                 </div>

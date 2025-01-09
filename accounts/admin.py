@@ -19,6 +19,9 @@ class ReferralAdmin(admin.ModelAdmin):
 class ServicesAdmin(admin.ModelAdmin):
     list_display = ('title', 'img','desc') 
 
+class ProductSchemeAdmin(admin.ModelAdmin):
+    list_display = ('product_id','investment', 'total', 'days')
+
 admin.site.register(ProductScheme)
 admin.site.register(Profile,ProfileAdmin)
 admin.site.register(Referral,ReferralAdmin)

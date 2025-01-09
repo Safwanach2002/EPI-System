@@ -124,7 +124,7 @@
       <form id="schemeForm">
         <div class="form-group">
           <label for="product_id">Product ID:</label>
-          <input type="text" id="product_id" placeholder="Enter Product ID" required="" readonly="">
+          <input type="text" id="product_id" name="product_id" value="{{ product_id }}" placeholder="Enter Product ID" required readonly="">
         </div>
         <div class="form-group">
           <label for="investment">Investment:</label>
@@ -137,7 +137,7 @@
         </div>
         <div class="form-group">
           <label for="total">Total:</label>
-          <input type="text" id="total" placeholder="Enter Total" required="" readonly="">
+          <input type="text" id="total" placeholder="Enter Total" required readonly="">
         </div>
         <button type="submit" id="calculateButton">Calculate</button>
       </form>

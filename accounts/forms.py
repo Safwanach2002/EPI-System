@@ -105,4 +105,4 @@ class ProfileForm(forms.ModelForm):
 class ProductSchemeForm(forms.ModelForm):
     class Meta:
         model = ProductScheme
-        fields = [ 'investment', 'total', 'days']
+        fields = ['product_id','investment', 'total', 'days']

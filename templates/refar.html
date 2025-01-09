@@ -19,10 +19,10 @@
         <div class="card mb-4">
             <div class="card-body">
                 <h4 class="card-title">Referral Details</h4>
-                <p><strong>Referral Link:<a href="{{ referral_link }}" id="referral-link" target="_blank">{{ referral_link }}</a></p>
+                <p><strong>Referral Code:</strong><span id="referral-code">{{ referral_code }}</span></p>
                 <p><strong>Referrals Made:</strong> <span id="referrals-made" class="badge bg-success">{{ referral_count }}</span></p>
                 <p><strong>Total Rewards Earned:</strong> $<span id="rewards-earned">{{ rewards_eraned }}</span></p>
-                <button id="copy-link-btn" class="btn btn-primary me-2">Copy Referral Link</button>
+                <button id="copy-link-btn" class="btn btn-primary me-2">Copy Referral Code</button>
                 <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#shareModal">Share</button>
             </div>
         </div>

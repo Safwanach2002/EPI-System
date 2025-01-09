@@ -1,10 +1,18 @@
 // Copy referral link to clipboard
-document.getElementById('copy-link-btn').addEventListener('click', () => {
-    const referralLink = document.getElementById('referral-link').textContent;
-    navigator.clipboard.writeText(referralLink).then(() => {
-        alert('Referral link copied to clipboard!');
-    }).catch(err => {
-        console.error('Failed to copy referral link:', err);
+// document.getElementById('copy-link-btn').addEventListener('click', () => {
+//     const referralLink = document.getElementById('referral-link').textContent;
+//     navigator.clipboard.writeText(referralLink).then(() => {
+//         alert('Referral link copied to clipboard!');
+//     }).catch(err => {
+//         console.error('Failed to copy referral link:', err);
+//     });
+// });
+
+// Copy Referral Code
+document.getElementById('copy-code-btn').addEventListener('click', function () {
+    const referralCode = document.getElementById('referral-code').innerText;
+    navigator.clipboard.writeText(referralCode).then(() => {
+        alert('Referral code copied to clipboard!');
     });
 });
 

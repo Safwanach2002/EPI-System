@@ -42,6 +42,7 @@ class Referral(models.Model):
         return f"Referral by {self.referred_by.user.username} to {self.referred_user.username}"
     
 class ProductScheme(models.Model):
+    product_id = models.CharField(max_length=100, unique=True, null=True)
     investment = models.DecimalField(max_digits=10, decimal_places=2)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     days = models.IntegerField()
@@ -62,6 +63,3 @@ class Services(models.Model):
     def __str__(self):
         return self.title
     
-    class Meta:
-        verbose_name = "Service"
-        verbose_name_plural = "Services"

@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from .models import Post, Referral, Profile, Services
+from django.shortcuts import get_object_or_404, render
+from .models import Post, Referral, Profile 
 from django.shortcuts import render,redirect
-from .forms import SignupForm
+from .forms import ProductSchemeForm, SignupForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
@@ -18,34 +18,19 @@ from datetime import datetime, timedelta
 # View to handle Product Scheme Management
 def product_scheme_manage(request):
     if request.method == 'POST':
-        # Get form data from POST request
-        investment = Decimal(request.POST.get('investment'))
-        total = Decimal(request.POST.get('total'))
-        days = int(request.POST.get('days'))
-
-        # Calculate the start and end date
-        start_date = datetime.now()
-        end_date = start_date + timedelta(days=days)
-
-        # Create a new ProductScheme object and save it to the database
-        scheme = ProductScheme.objects.create(
-            investment=investment,
-            total=total,
-            days=days,
-            start_date=start_date,
-            end_date=end_date
-        )
-
-        # Return the scheme details to be displayed in the popup
-        return render(request, 'product_scheme_manage.html', {
-            'scheme': scheme,
-            'start_date': start_date.strftime('%m/%d/%Y'),
-            'end_date': end_date.strftime('%m/%d/%Y')
-        })
-
-    # If it's a GET request, just display the empty form
-    return render(request, 'product_scheme_manage.html')
-
+        form = ProductSchemeForm(request.POST)
+        if form.is_valid():
+            scheme = form.save(commit=False)
+            scheme.start_date = datetime.now()
+            scheme.end_date = scheme.start_date + timedelta(days=form.cleaned_data['days'])
+            scheme.save()
+            return redirect('payment_screen')
+        else:
+            print(f"Form errors: {form.errors}")  # Debugging line
+    else:
+        form = ProductSchemeForm()
+    
+    return render(request, 'product_scheme_manage.html', {'form': form})
 
 def payment_screen(request):
     return render(request, 'payment.html')
@@ -164,19 +149,46 @@ def privacy(request):
 def refar(request):
     return render(request,'refar.html')
 
-def services(request):
-    return render(request,'services.html')
+
+# @login_required
+# def referral_view(request):
+#     if not request.user.is_authenticated:
+#         return redirect('login')
+
+#     user_profile = Profile.objects.get(user=request.user)
+
+#     # Generate referral link
+#     if not user_profile.referral_code:
+#         user_profile.referral_code = generate_referral_code()
+#         user_profile.save()
+
+#     # Fetch referral details
+#     referrals = Referral.objects.filter(referred_by=user_profile)
+#     referral_count = referrals.count()
+#     total_rewards = user_profile.rewards_earned
+
+#     referral_link = f"https://example.com/referral/{user_profile.referral_code}"
+
+#     context = {
+#         'referral_code': user_profile.referral_code,
+#         'referral_link': referral_link,
+#         'referral_count': referral_count,
+#         'total_rewards': total_rewards,
+#     }
+#     return render(request, 'refar.html', context)
+
+def services_view(request):
+    services = Services.objects.all()
+    return render(request, 'services.html' , {'services': services})
 
 @login_required
 def referral_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-
     user_profile = Profile.objects.get(user=request.user)
 
-    # Generate referral link
+    # Generate referral code if not already set
     if not user_profile.referral_code:
-        user_profile.referral_code = generate_referral_code()
+        user_name = request.user.first_name or "USER"  # Fallback to 'USER' if the name is empty
+        user_profile.referral_code = generate_referral_code(user_name)
         user_profile.save()
 
     # Fetch referral details
@@ -184,15 +196,19 @@ def referral_view(request):
     referral_count = referrals.count()
     total_rewards = user_profile.rewards_earned
 
-    referral_link = f"https://example.com/referral/{user_profile.referral_code}"
+    # Collect referred persons' details
+    referred_persons = [
+        {
+            'name': referral.referred_user.username,
+            'timestamp': referral.timestamp,
+        }
+        for referral in referrals
+    ]
 
     context = {
         'referral_code': user_profile.referral_code,
-        'referral_link': referral_link,
         'referral_count': referral_count,
         'total_rewards': total_rewards,
+        'referred_persons': referred_persons,
     }
     return render(request, 'refar.html', context)
-
-def services_view(request):
-    return render(request, 'services.html', {'service': services})

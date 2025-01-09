@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from .models import Profile
+from .models import Profile, ProductScheme
 
 class SignupForm(forms.ModelForm):
     accept_terms = forms.BooleanField(
@@ -101,3 +101,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['kyc_document_type', 'kyc_document', 'pan_card', 'bank_passbook']
+
+class ProductSchemeForm(forms.ModelForm):
+    class Meta:
+        model = ProductScheme
+        fields = [ 'investment', 'total', 'days']

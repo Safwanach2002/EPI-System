@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPI-Home</title>
-
-    <!--CDNS-->
+<!--CDNS-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -52,7 +51,6 @@
             padding-left: 25px;
         }
         
-        header section/
         .hero_area {
             font-family:Verdana, Geneva, Tahoma, sans-serif;
             position: relative;
@@ -65,8 +63,6 @@
             -ms-flex-direction: column;
             flex-direction: column;}
         
-        
-        
         .bg-box {
             position: absolute;
             top: 0;
@@ -75,14 +71,11 @@
             height: 100%;
         }  
         
-
-        /*nav bar*/
         .nav-bar{
             background-image: url(/static/navbar2.jpeg);
             background-size:12px;
             padding:12px;
             text-align:center;
-        
             
         }
         .navbar-brand{
@@ -104,14 +97,10 @@
             font-size: 23px;
             text-decoration: none;
         }
-
         
         .nav-bar li{
             margin-right:20px;
         }
-        
-        /*project card*/
-
         .content {
             padding: 20px;
             object-fit: cover;
@@ -249,7 +238,6 @@
             color: #ffffff;
         }
 
-        /*chat button*/
         .chat-button {
             position: fixed;
             bottom: 20px;
@@ -270,7 +258,7 @@
             right: 20px;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
             width: 300px;
             max-height: 500px;
@@ -383,23 +371,19 @@
 <body>
     <div class="nav-bar">
         <ul class="navbar-right">
-            <li><a href="#"><i class="fa fa-user" style="font-size:22px;color:rgb(76, 0, 255)"></i>Accounts</a></li>
-            <li><a href="{% url 'login' %}"><i class="fa fa-sign-out" style="font-size:22px;color:red"></i>Logout</a></li>
+            <li><a href="{% url 'profile' %}"><i class="fa fa-user" style="font-size:22px;color:rgb(76, 0, 255)"></i> Accounts</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:22px;color:red"></i> Logout</a></li>
         </ul>
 
         <ul class="navbar-left" style="font-family:cursive;font-size:x-large;">
-            
             <li a href="#">Easy Purchase Investment </li>
         </ul>
         <ul class="nav-bar ul mx-auto">
             <li class="active"><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'refar' %}">References</a></li>
-            <li><a href="">Services</a></li>
+            <li><a href="{% url 'services' %}">Services</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
         </ul>
-    
-
-    
     </div>
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -484,15 +468,15 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ i.title }}</h5>
                     <p class="card-description">{{ i.desc }}</p>
-                    <button class="buy-btn">VIEW MORE</button>
+                    <a href="{% url 'product_scheme_manage'%}"class="buy-btn">
+                        <button class="buy-btn">VIEW MORE</button>
+                    </a>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
     
-
-    <!--UPLOADING NEW POST-->
 
     <!-- Chat Button -->
     <button class="chat-button" onclick="toggleChat()">💬 Live Chat</button>
